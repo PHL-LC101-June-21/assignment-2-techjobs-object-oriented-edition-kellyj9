@@ -37,7 +37,7 @@ public class JobTest {
             );
       // Use assertTrue and assertEquals statements to test that the constructor
       // correctly assigns both the class and value of each field.
-
+    assertTrue(job3.getName() instanceof String); /// ADDED !!!!
       assertTrue(job3.getEmployer() instanceof Employer);
       assertTrue(job3.getLocation() instanceof Location);
       assertTrue(job3.getPositionType() instanceof PositionType);
@@ -156,7 +156,7 @@ public class JobTest {
             new PositionType(""),
             new CoreCompetency("")
     );
-    String strDataDoesNotExist = "\nOOPS! This job does not seem to exist.\n";
+    String strDataDoesNotExist = "OOPS! This job does not seem to exist.";
     assertEquals(strDataDoesNotExist, job9.toString());
   }
 

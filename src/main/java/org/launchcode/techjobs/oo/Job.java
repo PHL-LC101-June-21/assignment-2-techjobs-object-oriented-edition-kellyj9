@@ -108,7 +108,7 @@ public class Job {
         String strDataNotAvailable = "Data not available";  // to denote an empty field
 
         // string that gets returned when all fields are empty or null EXCEPT for the id
-        String strDataDoesNotExist = "\nOOPS! This job does not seem to exist.\n";
+        String strDataDoesNotExist = "OOPS! This job does not seem to exist.";
 
         String strEmployerValue = employer.getValue();
         String strLocationValue = location.getValue();
