@@ -20,7 +20,7 @@ public class JobTest {
     Job job1 = new Job();
     Job job2 = new Job();
 
-    // use assertNotEquals to verify that the IDs of the two objects are distinct
+    // use assertNotEquals to verify that the id's of the two objects are distinct
     assertNotEquals(job1, job2);
   }
 
@@ -28,81 +28,85 @@ public class JobTest {
   @Test
     public void testJobConstructorSetsAllFields() {
     // declare and initialize a new Job object
-      Job job3 = new Job(
+      Job job = new Job(
               "Product tester",
               new Employer("ACME"),
               new Location("Desert"),
               new PositionType("Quality control"),
               new CoreCompetency("Persistence")
             );
+
       // Use assertTrue and assertEquals statements to test that the constructor
       // correctly assigns both the class and value of each field.
-    assertTrue(job3.getName() instanceof String); /// ADDED !!!!
-      assertTrue(job3.getEmployer() instanceof Employer);
-      assertTrue(job3.getLocation() instanceof Location);
-      assertTrue(job3.getPositionType() instanceof PositionType);
-      assertTrue(job3.getCoreCompetency() instanceof CoreCompetency);
+     assertTrue(job.getName() instanceof String); // verify if this is needed
+                                                                      // for autograder
+      assertTrue(job.getEmployer() instanceof Employer);
+      assertTrue(job.getLocation() instanceof Location);
+      assertTrue(job.getPositionType() instanceof PositionType);
+      assertTrue(job.getCoreCompetency() instanceof CoreCompetency);
 
-      assertEquals("Product tester", job3.getName());
-      assertEquals("ACME", job3.getEmployer().getValue());
-      assertEquals("Desert", job3.getLocation().getValue());
-      assertEquals("Quality control", job3.getPositionType().getValue());
-      assertEquals("Persistence", job3.getCoreCompetency().getValue());
+      assertEquals("Product tester", job.getName());
+      assertEquals("ACME", job.getEmployer().getValue());
+      assertEquals("Desert", job.getLocation().getValue());
+      assertEquals("Quality control", job.getPositionType().getValue());
+      assertEquals("Persistence", job.getCoreCompetency().getValue());
     }
 
-    // Test the equals method.
+    // Test the equals method to verify that two Job objects are not equal
     // Two Job objects are considered equal if they have the same id value,
     // even if one or more of the other fields differ.
     // Similarly, the two objects are NOT equal
     // if their id values differ, even if all the other fields are identical.
     @Test
     public  void testJobsForEquality(){
-    // Generate two Job objects that have identical field values (EXCEPT for id)
-      Job job4 = new Job(
+    // generate two Job objects that have identical field values (EXCEPT for id)
+      Job job1 = new Job(
               "QA analyst",
               new Employer("Vanguard"),
               new Location("Philadelphia"),
               new PositionType("Quality control"),
               new CoreCompetency("Unit testing")
       );
-      Job job5 = new Job(
+      Job job2 = new Job(
               "QA analyst",
               new Employer("Vanguard"),
               new Location("Philadelphia"),
               new PositionType("Quality control"),
               new CoreCompetency("Unit testing")
       );
-      // test that equals returns false to make sure the objects have different id's
-      assertFalse(job4.equals(job5));
+
+      // check equals method returns false to make sure the objects have different id's
+      assertFalse(job1.equals(job2));
   }
 
-  // When passed a Job object, toString() should return a string that contains
+  // The toString method should return a string that contains
   // a blank line before and after the job information.
   @Test
     public void testToStringStartsAndEndsWithNewLine() {
       // create a Job object
-      Job job6 = new Job(
+      Job job = new Job(
               "Junior Web developer",
               new Employer("Catalyst"),
               new Location("Baltimore"),
               new PositionType("Dev"),
               new CoreCompetency("HTML")
       );
-      // When passed a Job object, it should return a string that contains a blank line
+
+      // toString method should return a string that contains a blank line
       // before and after the job information.
       assertEquals('\n',
-              job6.toString().charAt(0));
+              job.toString().charAt(0));
       assertEquals('\n',
-              job6.toString().charAt(job6.toString().length()-1));
+              job.toString().charAt(job.toString().length()-1));
   }
 
-  /// When passed a Job object, the toString() should return a string
-  // that contains a label for each field, followed by the data stored
-  // in that field. Each field should be on its own line.
+  /// When passed a Job object, the toString method should return a string
+  // that contains a label for each field, followed by the data stored in that field.
+  // Each field should be on its own line.
   @Test
   public void testToStringContainsCorrectLabelsAndData(){
     // create a Job object
-    Job job7 = new Job(
+    Job job = new Job(
             "Web developer",
             new Employer("Catalyst"),
             new Location("Baltimore"),
@@ -110,21 +114,22 @@ public class JobTest {
             new CoreCompetency("JavaScript")
     );
 
-    assertEquals("\nID: " + job7.getId() +
+    // check toString method returns a properly formatted string with labels and fields
+    assertEquals("\nID: " + job.getId() +
                     "\nName: Web developer" +
                     "\nEmployer: Catalyst" +
                     "\nLocation: Baltimore" +
                     "\nPosition Type: Dev" +
                     "\nCore Competency: JavaScript" +
-                    "\n", job7.toString());
+                    "\n", job.toString());
   }
 
   // If a field is empty, the method should add,
-  // “Data not available” after the label.
+  // a message that the data is not available after the label.
   @Test
   public void testToStringHandlesEmptyField() {
     // create a Job object with some fields empty
-    Job job8 = new Job(
+    Job job = new Job(
             "Web developer II",
             new Employer("Catalyst"),
             new Location(""),
@@ -132,32 +137,34 @@ public class JobTest {
             new CoreCompetency("")
     );
 
+    // check toString method properly denotes empty fields
     String strDataNotAvailable = "Data not available";
     assertEquals(
-            "\nID: " + job8.getId() +
+            "\nID: " + job.getId() +
             "\nName: Web developer II" +
             "\nEmployer: Catalyst" +
             "\nLocation: " + strDataNotAvailable +
             "\nPosition Type: Dev" +
             "\nCore Competency: " + strDataNotAvailable +
             "\n",
-            job8.toString());
-
+            job.toString());
   }
 
   // (Bonus) If a Job object ONLY contains data for the id field, the method
-  // should return, “\nOOPS! This job does not seem to exist.\n”
+  // should return a message
   @Test
   public void testToStringHandlesJobObjectOnlyContainsDataForID() {
     // create a Job object with all empty fields (note: the job id will still be generated)
-    Job job9 = new Job("",
+    Job job = new Job("",
             new Employer(""),
             new Location(""),
             new PositionType(""),
             new CoreCompetency("")
     );
+
+   // check toString method returns a message when all fields (except id) are empty
     String strDataDoesNotExist = "OOPS! This job does not seem to exist.";
-    assertEquals(strDataDoesNotExist, job9.toString());
+    assertEquals(strDataDoesNotExist, job.toString());
   }
 
 }

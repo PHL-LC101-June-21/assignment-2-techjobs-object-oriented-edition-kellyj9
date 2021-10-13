@@ -14,7 +14,7 @@ public class Employer extends JobField {
         if (this == o) return true;
         if (!(o instanceof Employer)) return false;
         Employer employer = (Employer) o;
-        return getId() == employer.getId();
+        return this.getId() == employer.getId();
     }
 
     @Override
