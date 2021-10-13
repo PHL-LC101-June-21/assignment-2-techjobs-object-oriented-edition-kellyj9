@@ -41,5 +41,4 @@ public abstract class JobField {
         return value;
     }
 
-
 }
