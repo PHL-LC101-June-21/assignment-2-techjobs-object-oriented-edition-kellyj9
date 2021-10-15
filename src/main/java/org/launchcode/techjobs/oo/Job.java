@@ -99,7 +99,7 @@ public class Job {
     blank line before and after the job information.
     The string should contain a label for each field, followed by the data stored in
     that field. Each field should be on its own line.
-     If a field is empty, the method should add a message such as  “Data not available”
+     If a field is empty, the method should add a message such as  Data not available
      after the label.
     (Bonus) If a Job object ONLY contains data for the id field, the method should
     return a message

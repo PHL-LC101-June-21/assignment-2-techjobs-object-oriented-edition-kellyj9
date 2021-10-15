@@ -19,7 +19,7 @@ public class Employer extends JobField {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(this.getId());
     }
 
 }

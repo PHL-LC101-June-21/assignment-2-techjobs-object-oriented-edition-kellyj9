@@ -121,7 +121,8 @@ public class JobTest {
                     "\nLocation: Baltimore" +
                     "\nPosition Type: Dev" +
                     "\nCore Competency: JavaScript" +
-                    "\n", job.toString());
+                    "\n", job.toString()
+    );
   }
 
   // If a field is empty, the method should add,
@@ -147,7 +148,8 @@ public class JobTest {
             "\nPosition Type: Dev" +
             "\nCore Competency: " + strDataNotAvailable +
             "\n",
-            job.toString());
+            job.toString()
+    );
   }
 
   // (Bonus) If a Job object ONLY contains data for the id field, the method

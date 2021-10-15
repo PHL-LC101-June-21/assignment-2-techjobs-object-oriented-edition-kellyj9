@@ -13,12 +13,12 @@ public class Location extends JobField {
         if (this == o) return true;
         if (!(o instanceof Location)) return false;
         Location location = (Location) o;
-        return getId() == location.getId();
+        return this.getId() == location.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(this.getId());
     }
 
 }

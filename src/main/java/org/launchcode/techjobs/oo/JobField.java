@@ -1,6 +1,6 @@
 package org.launchcode.techjobs.oo;
 
-public abstract class JobField {
+abstract class JobField {
 
     private int id;
     private static int nextId = 1;
@@ -41,4 +41,9 @@ public abstract class JobField {
         return value;
     }
 
+    @Override
+    public abstract boolean equals(Object o);
+
+    @Override
+    public abstract int hashCode();
 }
