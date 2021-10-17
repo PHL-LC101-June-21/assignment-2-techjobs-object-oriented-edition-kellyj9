@@ -4,15 +4,7 @@ import java.util.Objects;
 
 public class Job {
 
-    // constant used to dentote an empty string
-    private static final String DATA_NOT_AVAILABLE =
-            "Data not available";
-
-    // constant used to denote that all fields are empty or null EXCEPT for the id
-    private static final String DATA_DOES_NOT_EXIST =
-            "OOPS! This job does not seem to exist.";
-
-    private int id;
+    private final int id;
     private static int nextId = 1;
 
     private String name;
@@ -22,8 +14,7 @@ public class Job {
     private CoreCompetency coreCompetency;
 
     // TODO: Add two constructors -
-    //  one to initialize a unique ID and a second to initialize the
-    //  other five fields.
+    //  one to initialize a unique ID and a second to initialize the other five fields.
     //  The second constructor should also call the first in order to initialize
     //  the 'id' field.
     public Job() {
@@ -116,11 +107,15 @@ public class Job {
       */
     @Override
     public String toString() {
+
         // get the values for all the fields
         String strEmployerValue = employer.getValue();
         String strLocationValue = location.getValue();
         String strPositionTypeValue = positionType.getValue();
         String strCoreCompetencyValue = coreCompetency.getValue();
+
+        //  used to note when all fields are empty or null EXCEPT for the id
+        String dataDoesNotExist = "OOPS! This job does not seem to exist.";
 
         // if all fields are empty (EXCEPT for id)
         // then return a message that the job doesn't seem to exist...
@@ -130,37 +125,17 @@ public class Job {
                 strLocationValue.equals("") &&
                 strPositionTypeValue.equals("") &&
                 strCoreCompetencyValue.equals("")) {
-            return DATA_DOES_NOT_EXIST;
+            return dataDoesNotExist;
         }
         // ...otherwise concatenate the field headings and field values to create a string
         else {
-            String tempToString = "\nID: " + id;
-            tempToString += appendFieldHeadingToString(
-                    tempToString,
-                    "Name",
-                    name);
-            tempToString +=
-                    appendFieldHeadingToString(
-                            tempToString,
-                            "Employer",
-                            strEmployerValue);
-            tempToString +=
-                    appendFieldHeadingToString(
-                            tempToString,
-                            "Location",
-                            strLocationValue);
-            tempToString +=
-                    appendFieldHeadingToString(
-                            tempToString,
-                            "Position Type",
-                            strPositionTypeValue);
-            tempToString +=
-                    appendFieldHeadingToString(
-                            tempToString,
-                            "Core Competency",
-                            strCoreCompetencyValue);
-
-            return tempToString += "\n";
+            return "\nID: " + id +
+                    appendFieldHeadingToString("Name", name) +
+                    appendFieldHeadingToString("Employer", strEmployerValue) +
+                    appendFieldHeadingToString("Location",  strLocationValue) +
+                    appendFieldHeadingToString("Position Type", strPositionTypeValue) +
+                    appendFieldHeadingToString("Core Competency",  strCoreCompetencyValue) +
+                    "\n";
         }
     }
 
@@ -168,21 +143,23 @@ public class Job {
     // specific format and returns the formatted string
     // When a field value is an empty string, append the message in the
     // constant DATA_NOT_AVAILABLE
-    public String appendFieldHeadingToString(String tempToString,
-                                             String fieldName,
+    public String appendFieldHeadingToString(String fieldName,
                                              String fieldValue) {
+
+        // used to note that data is not available when a field is empty
+        String dataNotAvailable = "Data not available";
+
         // append the field heading
-        tempToString = "\n" + fieldName + ": ";
+        String tempToString = "\n" + fieldName + ": ";
 
-        //  if the field value is empty, denote that the
-        //  data is not available for that field.  Otherwise, append the field value.
-
+        //  if the field value is empty, append a note for that field that the
+        //  data is not available and return the result...
         if (fieldValue.equals("")) {
-            tempToString += DATA_NOT_AVAILABLE;
+            return tempToString + dataNotAvailable;
+       //  ...otherwise, append the field value and return the result
         } else {
-            tempToString += fieldValue;
+            return tempToString + fieldValue;
         }
-        return tempToString;
     }
 
 }
