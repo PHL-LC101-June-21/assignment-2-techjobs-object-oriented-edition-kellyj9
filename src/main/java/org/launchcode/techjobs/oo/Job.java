@@ -100,8 +100,8 @@ public class Job {
     blank line before and after the job information.
     The string should contain a label for each field, followed by the data stored in
     that field. Each field should be on its own line.
-     If a field is empty, the method should add a message such as  Data not available
-     after the label.
+     If a field is empty, the method should add a message after the label that
+     the data is not available.
     (Bonus) If a Job object ONLY contains data for the id field, the method should
     return a message
       */
@@ -127,30 +127,32 @@ public class Job {
                 strCoreCompetencyValue.equals("")) {
             return dataDoesNotExist;
         }
-        // ...otherwise concatenate the field headings and field values to create a string
+        // ...otherwise concatenate the field labels and field values to create a string
         else {
             return "\nID: " + id +
-                    appendFieldHeadingToString("Name", name) +
-                    appendFieldHeadingToString("Employer", strEmployerValue) +
-                    appendFieldHeadingToString("Location",  strLocationValue) +
-                    appendFieldHeadingToString("Position Type", strPositionTypeValue) +
-                    appendFieldHeadingToString("Core Competency",  strCoreCompetencyValue) +
+                    toStringFieldLabelAndValue("Name", name) +
+                    toStringFieldLabelAndValue("Employer", strEmployerValue) +
+                    toStringFieldLabelAndValue("Location",  strLocationValue) +
+                    toStringFieldLabelAndValue("Position Type", strPositionTypeValue) +
+                    toStringFieldLabelAndValue("Core Competency",  strCoreCompetencyValue) +
                     "\n";
         }
     }
 
-    // Appends a field name and its value to the string tempToString in a
-    // specific format and returns the formatted string
-    // When a field value is an empty string, append the message in the
-    // constant DATA_NOT_AVAILABLE
-    public String appendFieldHeadingToString(String fieldName,
+     /*
+     Appends a field label and its value to the string tempToString in a
+     specific format and returns the formatted string
+     When a field value is an empty string, append a message that
+     the data is not available
+      */
+    public String toStringFieldLabelAndValue(String fieldLabel,
                                              String fieldValue) {
 
         // used to note that data is not available when a field is empty
         String dataNotAvailable = "Data not available";
 
-        // append the field heading
-        String tempToString = "\n" + fieldName + ": ";
+        // start building the string
+        String tempToString = "\n" + fieldLabel + ": ";
 
         //  if the field value is empty, append a note for that field that the
         //  data is not available and return the result...

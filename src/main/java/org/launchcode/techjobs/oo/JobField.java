@@ -1,5 +1,7 @@
 package org.launchcode.techjobs.oo;
 
+import java.util.Objects;
+
 abstract class JobField {
 
     private final int id;
@@ -34,7 +36,7 @@ abstract class JobField {
         this.value = value;
     }
 
-    // Custom methods
+    // Methods
 
     @Override
     public String toString() {
@@ -42,8 +44,16 @@ abstract class JobField {
     }
 
     @Override
-    public abstract boolean equals(Object o);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        JobField jobField = (JobField) o;
+        return id == jobField.id;
+    }
 
     @Override
-    public abstract int hashCode();
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }
