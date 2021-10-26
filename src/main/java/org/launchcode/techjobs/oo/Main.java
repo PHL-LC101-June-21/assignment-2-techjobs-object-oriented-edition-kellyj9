@@ -35,22 +35,6 @@ public class Main {
         for (Job job : jobs){
             System.out.println(job);
         }
-
-        // Tests used to debug:
-//        CoreCompetency coreComp1 = new CoreCompetency("Tasting ability1");
-//        CoreCompetency coreComp2 = new CoreCompetency("Tasting ability2");
-//        System.out.println(coreComp1.getId());
-//        System.out.println(coreComp2.getId());
-//        System.out.println(coreComp1);
-//        System.out.println(coreComp2);
-//
-//        Location location1 = new Location("Philadelphia1");
-//        Location location2 = new Location("Philadelphia2");
-//
-//        System.out.println(location1.getId());
-//        System.out.println(location2.getId());
-//        System.out.println(location1);
-//        System.out.println(location2);
     }
 
 }

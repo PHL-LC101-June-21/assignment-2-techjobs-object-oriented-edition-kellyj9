@@ -26,8 +26,22 @@ abstract class JobField {
         return id;
     }
 
+    // Custom getter
+    // Returns the field value or a message that the data is not available
+    // when the field value is empty or null
     public String getValue() {
-        return value;
+        // used to note that data is not available when a field is null or empty
+        String dataNotAvailable = "Data not available";
+
+        // if the string is null or an empty string,
+        // then return a string noting that the data is not available;
+        // otherwise return the field's value.
+        if (value == null || value.isEmpty()) {
+            return dataNotAvailable;
+        }
+        else {
+            return value;
+        }
     }
 
     // Setter
@@ -36,7 +50,7 @@ abstract class JobField {
         this.value = value;
     }
 
-    // Methods
+    // Custom Methods
 
     @Override
     public String toString() {
